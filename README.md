@@ -10,7 +10,7 @@ Add the project to your Mix dependencies in `mix.exs`:
 
 ```elixir
 defp deps do
-  [{:ex_json_schema, "~> 0.3.1"}]
+  [{:ex_json_schema, git: "git://github.com/OSChris/ex_json_schema.git"}]
 end
 ```
 
@@ -66,7 +66,7 @@ iex> ExJsonSchema.Validator.validate(schema, %{"foo" => "bar"})
 :ok
 
 iex> ExJsonSchema.Validator.validate(schema, %{"foo" => 1})
-{:error, [{"Type mismatch. Expected String but got Integer.", "#/foo"}]}
+{:error, [{%{property: "foo", type: "invalid_type", message: "Type mismatch. Expected String but got Integer."}, "#/foo"}]}
 ```
 
 Errors are tuples of a message and the path to the element not matching the schema. The path is following the same conventions used in JSON Schema for referencing JSON elements.

@@ -42,7 +42,7 @@ defmodule ExJsonSchema.Validator.Format do
   defp validate_with_regex(data, regex, failure_message_fun) do
     case Regex.match?(regex, data) do
       true -> []
-      false -> [{failure_message_fun.(data), []}]
+      false -> [{%{key: "format", msg: failure_message_fun.(data)}, []}]
     end
   end
 end

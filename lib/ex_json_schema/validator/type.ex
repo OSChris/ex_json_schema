@@ -5,7 +5,7 @@ defmodule ExJsonSchema.Validator.Type do
   def validate(type, data) do
     case valid?(type, data) do
       true -> []
-      false -> [{"Type mismatch. Expected #{type |> type_name} but got #{data |> data_type |> type_name}.", []}]
+      false -> [{%{key: "invalid_type", msg: "Type mismatch. Expected #{type |> type_name} but got #{data |> data_type |> type_name}."}, []}]
     end
   end
 
